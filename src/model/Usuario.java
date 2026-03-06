@@ -8,4 +8,12 @@ public class Usuario {
         this.email = email;
         this.contraseña = contraseña;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
 }
