@@ -17,4 +17,14 @@ public class AuthController {
         usuarios.add(new Usuario(email, contraseña));
         return true;
     }
+
+    public boolean login(String email, String contraseña) {
+        for (Usuario u : usuarios) {
+            if (u.getEmail().equals(email) && u.getContraseña().equals(contraseña)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
