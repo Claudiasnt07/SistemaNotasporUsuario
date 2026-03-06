@@ -44,6 +44,26 @@ public class Main {
                             System.out.println("3. Eliminar nota");
                             System.out.println("0. Cerrar sesión");
                             op = InputUtils.leerNumero("Opción: ");
+
+                            switch (op) {
+                                case 1 -> {
+                                    String titulo = InputUtils.leerTexto("Titulo: ");
+                                    String cont = InputUtils.leerTexto("Contenido: ");
+                                    notas.crearNota(email, titulo, cont);
+                                }
+                                case 2 -> {
+                                    List<Nota> lista = notas.listarNotas(email);
+
+                                    for (int i = 0; i < lista.size(); i++) {
+                                        Nota n = lista.get(i);
+                                        System.out.println((i + 1) + ". " + n.getTitulo() + " - " + n.getContenido());
+                                    }
+                                }
+                                case 3 -> {
+                                    int n = InputUtils.leerNumero("Número nota: ");
+                                    notas.eliminarNota(email, n - 1);
+                                }
+                            }
                         } while (op != 0);
                         
                     } else {
