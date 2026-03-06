@@ -25,13 +25,22 @@ public class Main {
                     String email = InputUtils.leerTexto("Email: ");
                     String pass = InputUtils.leerTexto("Contraseña: ");
 
-                    if (auth.registrar(email, pass)) {
+                    if (auth.registrar(email, contraseña)) {
                         System.out.println("Usuario registrado");
                     } else {
                         System.out.println("El usuario ya existe");
                     }
                 }
-                
+                case 2 -> {
+                    String email = InputUtils.leerTexto("Email: ");
+                    String pass = InputUtils.leerTexto("Contraseña: ");
+
+                    if (auth.login(email, contraseña)) {
+                        System.out.println("Login correcto");
+                    } else {
+                        System.out.println("Credenciales incorrectas");
+                    }
+                }
             }
         } while (opcion != 0);
     }
