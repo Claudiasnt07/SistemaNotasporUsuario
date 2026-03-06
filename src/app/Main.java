@@ -7,6 +7,7 @@ import utils.InputUtils;
 
 public class Main {
     public static void main(String[] args) {
-
+        AuthController auth = new AuthController();
+        NotaController notas = new NotaController();
     }
 }
