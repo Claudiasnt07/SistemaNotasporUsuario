@@ -16,3 +16,18 @@ Tres clases de utils;
     InputUtils
     SecurityUtils
 Un Main; que ejecuta todo el proyecto
+
+# Estructura
+src/
+    app/Main.java
+    controller/
+        AuthController.java
+        NotaController.java
+    model/
+        Nota.java
+        Usuario.java
+    utils/
+        FileUtils.java
+        InputUtils.java
+        SecurityUtils.java
+        
