@@ -37,6 +37,15 @@ public class Main {
 
                     if (auth.login(email, contraseña)) {
                         System.out.println("Login correcto");
+                        int op;
+                        do {
+                            System.out.println("\n1. Crear nota");
+                            System.out.println("2. Listar notas");
+                            System.out.println("3. Eliminar nota");
+                            System.out.println("0. Cerrar sesión");
+                            op = InputUtils.leerNumero("Opción: ");
+                        } while (op != 0);
+                        
                     } else {
                         System.out.println("Credenciales incorrectas");
                     }
