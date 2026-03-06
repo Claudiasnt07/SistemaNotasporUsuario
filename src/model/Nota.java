@@ -16,4 +16,9 @@ public class Nota {
     public String getContenido() {
         return contenido;
     }
+
+    @Override
+    public String toString() {
+        return titulo + " - " + contenido; 
+    }
 }
