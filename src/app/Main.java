@@ -19,6 +19,20 @@ public class Main {
             System.out.println("0. Salir");
 
             opcion = InputUtils.leerNumero("Opcion: ");
+
+            switch (opcion) {
+                case 1 -> {
+                    String email = InputUtils.leerTexto("Email: ");
+                    String pass = InputUtils.leerTexto("Contraseña: ");
+
+                    if (auth.registrar(email, pass)) {
+                        System.out.println("Usuario registrado");
+                    } else {
+                        System.out.println("El usuario ya existe");
+                    }
+                }
+                
+            }
         } while (opcion != 0);
     }
 }
