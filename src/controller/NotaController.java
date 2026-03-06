@@ -10,4 +10,16 @@ public class NotaController {
     public void crearNota(String email, String titulo, String contenido) {
         notas.add(new Nota(email, titulo, contenido));
     }
+
+    public List<Nota> listarNotas(String email) {
+        List<Nota> resultado = new ArrayList<>();
+
+        for (Nota n : notas) {
+            if (n.getEmailUsuario().equals(email)) {
+                resultado.add(n);
+            }
+        }
+
+        return resultado;
+    }
 }
