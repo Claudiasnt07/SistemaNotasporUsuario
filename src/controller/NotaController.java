@@ -22,4 +22,15 @@ public class NotaController {
 
         return resultado;
     }
+
+    public void eliminarNota(String email, int indice) {
+        List<Nota> notaUsuario = listarNotas(email);
+
+        if (indice < 0 || indice >= notasUsuario.size()) {
+            System.out.println("Indice inválido");
+            return;
+        }
+
+        notas.remove(notasUsuario.get(indice));
+    }
 }
