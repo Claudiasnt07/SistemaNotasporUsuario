@@ -16,4 +16,9 @@ public class Usuario {
     public String getContraseña() {
         return contraseña;
     }
+
+    @Override
+    public String toString() {
+        return email;
+    }
 }
