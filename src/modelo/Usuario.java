@@ -1,1 +1,5 @@
-hols hplslssl
+package modelo;
+
+public class Usuario {
+    
+}
