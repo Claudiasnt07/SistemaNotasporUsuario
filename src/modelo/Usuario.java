@@ -8,4 +8,11 @@ public class Usuario {
         this.email = email;
         this.passwordHash = passwordHash;
     }
+
+    public String getEmail() {
+        return email;
+    }
+    public String getPasswordHash() {
+        return passwordHash;
+    }
 }
