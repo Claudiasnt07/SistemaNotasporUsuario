@@ -10,4 +10,6 @@ import java.util.List;
 
 public class NotaServicio {
 
+    private final Path notasFile;
+    
 }
