@@ -11,5 +11,8 @@ import java.util.List;
 public class NotaServicio {
 
     private final Path notasFile;
-    
+
+    public NotaServicio(Path notasFile) {
+        this.notasFile = notasFile;
+    }
 }
