@@ -5,6 +5,7 @@ public class Usuario {
     private String passwordHash;
 
     public Usuario(String email, String passwordHash) {
-        
+        this.email = email;
+        this.passwordHash = passwordHash;
     }
 }
