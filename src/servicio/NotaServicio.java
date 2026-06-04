@@ -15,4 +15,13 @@ public class NotaServicio {
     public NotaServicio(Path notasFile) {
         this.notasFile = notasFile;
     }
+
+    public void crear(String titulo, String contenido) {
+    try {
+        Files.write(notasFile, Collections.singletonList(titulo + ";" + contenido), StandardOpenOption.APPEND);
+    } catch (IOException e) {
+        System.out.println("Error");
+        e.printStackTrace();
+    }
+    }
 }
