@@ -17,11 +17,22 @@ public class NotaServicio {
     }
 
     public void crear(String titulo, String contenido) {
-    try {
-        Files.write(notasFile, Collections.singletonList(titulo + ";" + contenido), StandardOpenOption.APPEND);
-    } catch (IOException e) {
+        try {
+            Files.write(notasFile, Collections.singletonList(titulo + ";" + contenido), StandardOpenOption.APPEND);
+        } catch (IOException e) {
         System.out.println("Error");
         e.printStackTrace();
+        }
     }
+    
+}
+
+public List<String> listar() {
+    try {
+        if (!Files.exists(notasFile)) Files.createFile(notasFile);
+        return Files.readAllLines(notasFile);
+    } catch (IOException e) {
+        e.printStackTrace();
+        return new ArrayList<>();
     }
 }
