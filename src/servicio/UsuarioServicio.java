@@ -51,4 +51,25 @@ public class UsuarioServicio {
             return false;
         }
     }
+
+    public boolean login(String email, String pass) {
+        try {
+            if (!Files.exists(usuariosFile)) return false;
+
+            String hashPass = HashUtil.hash(pass);
+            List<String> lista = Files.readAllLines(usuariosFile);
+            for (String u : lista) {
+                String[] p = u.split(";");
+                if (p[0].equals(email) && p[1].equals(hashPass)) {
+                    return true;
+                }
+            }
+            return false;
+
+        } catch (IOException e) {
+            System.out.println("Error");
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
