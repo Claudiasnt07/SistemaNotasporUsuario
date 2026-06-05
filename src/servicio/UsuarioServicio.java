@@ -12,5 +12,9 @@ import src.util.HashUtil;
 public class UsuarioServicio {
     private final Path usuariosFile;
     private final Path usuariosFolder;
-    
+
+    public UsuarioServicio(Path usuariosFile, Path usuariosFolder) {
+        this.usuariosFile = usuariosFile;
+        this.usuariosFolder = usuariosFolder;
+    }
 }
