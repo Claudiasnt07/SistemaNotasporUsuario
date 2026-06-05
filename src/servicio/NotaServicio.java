@@ -18,65 +18,81 @@ public class NotaServicio {
 
     public void crear(String titulo, String contenido) {
         try {
-            Files.write(notasFile, Collections.singletonList(titulo + ";" + contenido), StandardOpenOption.APPEND);
+            Files.write(
+                notasFile,
+                Collections.singletonList(titulo + ";" + contenido),
+                StandardOpenOption.CREATE,
+                StandardOpenOption.APPEND
+            );
         } catch (IOException e) {
-        System.out.println("Error");
-        e.printStackTrace();
+            System.out.println("Error al crear la nota");
+            e.printStackTrace();
         }
     }
-    
-}
 
-public List<String> listar() {
-    try {
-        if (!Files.exists(notasFile)) Files.createFile(notasFile);
-        return Files.readAllLines(notasFile);
-    } catch (IOException e) {
-        e.printStackTrace();
-        return new ArrayList<>();
-    }
-}
-
-public void borrar(int index) {
-    try {
-        List<String> lista = listar();
-        if (index < 0 || index >= lista.size()) {
-            System.out.println("Error")
-            return;
+    public List<String> listar() {
+        try {
+            if (!Files.exists(notasFile)) {
+                Files.createFile(notasFile);
+            }
+            return Files.readAllLines(notasFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
         }
-        lista.remove(index);
-        Files.write(notasFile, lista);
-    } catch (IOException e) {
-        System.out.println("Error borrando nota");
-        e.printStackTrace();
     }
-}
 
-public String[] ver(int index) {
-    try {
-        List<String> lista = listar();
-        if (index < 0 || index >= lista.size()) {
-            System.out.println("Error");
+    public void borrar(int index) {
+        try {
+            List<String> lista = listar();
+
+            if (index < 0 || index >= lista.size()) {
+                System.out.println("Índice no válido");
+                return;
+            }
+
+            lista.remove(index);
+            Files.write(notasFile, lista);
+
+        } catch (IOException e) {
+            System.out.println("Error borrando nota");
+            e.printStackTrace();
+        }
+    }
+
+    public String[] ver(int index) {
+        try {
+            List<String> lista = listar();
+
+            if (index < 0 || index >= lista.size()) {
+                System.out.println("Índice no válido");
+                return null;
+            }
+
+            return lista.get(index).split(";", 2);
+
+        } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
-        return lista.get(index).split(";");
-    } catch (Exception e) {
-        e.printStackTrace();
-        return null;
     }
-}
 
-public List<String> buscar(String palabra) {
-    List<String> encontrados = new ArrayList<>();
-    try {
-        List<String> lista = listar();
-        for (String s : lista) {
-            if (s.toLowerCase().contains(palabra.toLowerCase())) {
-                encontrados.add(s.split(";")[0]);
+    public List<String> buscar(String palabra) {
+        List<String> encontrados = new ArrayList<>();
+
+        try {
+            List<String> lista = listar();
+
+            for (String s : lista) {
+                if (s.toLowerCase().contains(palabra.toLowerCase())) {
+                    encontrados.add(s.split(";", 2)[0]);
+                }
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    } catch (Exception e) {
-        e.printStackTrace();
+
+        return encontrados;
     }
-    return encontrados;
 }
