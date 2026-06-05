@@ -37,31 +37,46 @@ public List<String> listar() {
     }
 }
 
-    public void borrar(int index) {
-        try {
-            List<String> lista = listar();
-            if (index < 0 || index >= lista.size()) {
-                System.out.println("Error")
-                return;
-            }
-            lista.remove(index);
-            Files.write(notasFile, lista);
-        } catch (IOException e) {
-            System.out.println("Error borrando nota");
-            e.printStackTrace();
+public void borrar(int index) {
+    try {
+        List<String> lista = listar();
+        if (index < 0 || index >= lista.size()) {
+            System.out.println("Error")
+            return;
         }
+        lista.remove(index);
+        Files.write(notasFile, lista);
+    } catch (IOException e) {
+        System.out.println("Error borrando nota");
+        e.printStackTrace();
     }
+}
 
-    public String[] ver(int index) {
-        try {
-            List<String> lista = listar();
-            if (index < 0 || index >= lista.size()) {
-                System.out.println("Error");
-                return null;
-            }
-            return lista.get(index).split(";");
-        } catch (Exception e) {
-            e.printStackTrace();
+public String[] ver(int index) {
+    try {
+        List<String> lista = listar();
+        if (index < 0 || index >= lista.size()) {
+            System.out.println("Error");
             return null;
         }
+        return lista.get(index).split(";");
+    } catch (Exception e) {
+        e.printStackTrace();
+        return null;
     }
+}
+
+public List<String> buscar(String palabra) {
+    List<String> encontrados = new ArrayList<>();
+    try {
+        List<String> lista = listar();
+        for (String s : lista) {
+            if (s.toLowerCase().contains(palabra.toLowerCase())) {
+                encontrados.add(s.split(";")[0]);
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return encontrados;
+}
