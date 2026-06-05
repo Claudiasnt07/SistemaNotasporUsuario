@@ -51,3 +51,17 @@ public List<String> listar() {
             e.printStackTrace();
         }
     }
+
+    public String[] ver(int index) {
+        try {
+            List<String> lista = listar();
+            if (index < 0 || index >= lista.size()) {
+                System.out.println("Error");
+                return null;
+            }
+            return lista.get(index).split(";");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
