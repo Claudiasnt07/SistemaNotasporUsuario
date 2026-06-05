@@ -17,4 +17,38 @@ public class UsuarioServicio {
         this.usuariosFile = usuariosFile;
         this.usuariosFolder = usuariosFolder;
     }
+
+    public boolean registrar(String email, String pass) {
+        if (email.isEmpty() || pass.isEmpty()) {
+            System.out.println("Obligatorio");
+            return false;
+        }
+
+        try {
+            if (!Files.exists(usuariosFile)) Files.createFile(usuariosFile);
+            List<String> lista = Files.readAllLines(usuariosFile);
+            for (String u : lista) {
+                if (u.split(";")[0].equals(email)) {
+                    System.out.println("El usuario ya existe");
+                    return false;
+                }
+            }
+
+            String hashPass = HashUtil.hash(pass);
+            Files.write(usuariosFile,
+                        Collections.singletonList(email + ";" + hashPass),
+                        StandardOpenOption.APPEND);
+            Path carpeta = usuariosFolder.resolve(HashUtil.limpiarEmail(email));
+            Files.createDirectories(carpeta);
+            Files.createFile(carpeta.resolve("notas.txt"));
+
+            System.out.println("El usuario ha sido creado");
+            return true;
+
+        } catch (IOException e) {
+            System.out.println("Error");
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
