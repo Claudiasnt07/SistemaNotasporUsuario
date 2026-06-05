@@ -36,3 +36,18 @@ public List<String> listar() {
         return new ArrayList<>();
     }
 }
+
+    public void borrar(int index) {
+        try {
+            List<String> lista = listar();
+            if (index < 0 || index >= lista.size()) {
+                System.out.println("Error")
+                return;
+            }
+            lista.remove(index);
+            Files.write(notasFile, lista);
+        } catch (IOException e) {
+            System.out.println("Error borrando nota");
+            e.printStackTrace();
+        }
+    }
