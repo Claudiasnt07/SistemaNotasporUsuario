@@ -9,12 +9,16 @@ public class HashUtil {
             byte[] bytes = md.digest(pass.getBytes());
             StringBuilder resultado = new StringBuilder();
             for (byte b : bytes) {
-                resultado.append(Strin.format("%02x", b));
+                resultado.append(String.format("%02x", b));
             }
             return resultado.toString();
         } catch (Exception e) {
             return pass;
         }
+    }
+
+    public static String limpiarEmail(String email) {
+        return email.replace("@", "_").replace(".", "_");
     }
     
 }
