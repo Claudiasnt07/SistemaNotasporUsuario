@@ -10,5 +10,7 @@ import java.util.Collections;
 import src.util.HashUtil;
 
 public class UsuarioServicio {
+    private final Path usuariosFile;
+    private final Path usuariosFolder;
     
 }
